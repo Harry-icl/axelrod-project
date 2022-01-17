@@ -20,10 +20,11 @@ class MixedStrategy(Player):
         "manipulates_state": False,
     }
 
-    def __init__(self, f, p, q):
+    def __init__(self, f, p, q, name=None):
         self.f = f
         self.p = p
         self.q = q
+        self.name = name
         super().__init__()
 
     def strategy(self, opponent: Player) -> Action:
@@ -43,6 +44,12 @@ class MixedStrategy(Player):
             else:
                 return D
 
+    def __repr__(self):
+        if self.name:
+            return self.name
+        else:
+            return super().__repr__()
+
 
 class MemoryOneStrategy(Player):
     name = "MOS"
@@ -55,12 +62,13 @@ class MemoryOneStrategy(Player):
         "manipulates_state": False,
     }
 
-    def __init__(self, f, qR, qS, qT, qP):
+    def __init__(self, f, qR, qS, qT, qP, name=None):
         self.f = f
         self.qR = qR
         self.qS = qS
         self.qT = qT
         self.qP = qP
+        self.name = name
         super().__init__()
 
     def strategy(self, opponent: Player) -> Action:
@@ -89,3 +97,9 @@ class MemoryOneStrategy(Player):
                 return C
             else:
                 return D
+
+    def __repr__(self):
+        if self.name:
+            return str(self.name)
+        else:
+            return super().__repr__()
